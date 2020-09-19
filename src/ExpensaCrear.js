@@ -1,5 +1,6 @@
 import React  from "react";
 import { useForm } from "react-hook-form";
+import { db } from "./services/firebase.js"
 import './App.css'
 
 import {
@@ -13,8 +14,20 @@ function ExpensaCrear() {
 
   const { handleSubmit, errors, register, formState } = useForm();
 
+  async function submitExpensa(map) {
+    try {
+      await db.ref("expensas").push({
+        content: map,
+        timestamp: Date.now()
+      });
+    } catch (error) {
+      console.log("Falló");
+    }
+  }
+
   function onSubmit(values) {
     console.log(values);
+    submitExpensa(values);
   }
 
   function returnForm(){
