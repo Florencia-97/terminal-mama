@@ -36,3 +36,36 @@
   text-transform: uppercase;
   margin-bottom: 10px;
 }
+
+.download-buttons{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.button-download{
+  background: #407088;
+  border-radius: 10%;
+  color: white;
+  font-weight: 600;
+  padding: 5px;
+  margin: 8px;
+  width: 30px;
+}
+
+.list-expensa-item {
+  align-items: center;
+  background: #ffe2e2;
+  display: flex;
+  height: 50px;
+  justify-content: space-around;
+  margin: 5px;
+}
+
+.crear-expensa-btn {
+  color: white;
+  display: flex;
+  padding: 10px;
+  justify-content: space-around;
+  width: 20%;
+}

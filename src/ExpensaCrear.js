@@ -9,7 +9,8 @@ import {
 
 import ExpensasRow from "./ExpensasRow";
 
-function Expensas() {
+function ExpensaCrear() {
+
   const { handleSubmit, errors, register, formState } = useForm();
 
   function onSubmit(values) {
@@ -38,19 +39,19 @@ function Expensas() {
             variantColor="teal"
             isLoading={formState.isSubmitting}
             type="submit">
-            PDF's
+            Crear
           </Button>
         </Box>
       </form>
-    )
+    );
   }
 
   return (
     <Box p={8}>
-      <h1 className="sub-title">Expensas</h1>
+      <h1 className="sub-title">Nuevo Mes</h1>
       {returnForm()}
     </Box>
   );
 }
   
-export default Expensas;
+export default ExpensaCrear;
