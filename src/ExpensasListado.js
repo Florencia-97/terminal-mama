@@ -7,11 +7,11 @@ import {
     List,
     ListItem,
     Box,
-    Icon
+    Icon,
+    Button
 } from "@chakra-ui/core";
 
 import ExpensasDescargar from "./ExpensasDescargar";
-
 
 class ExpensasListado extends Component {
 
@@ -21,6 +21,9 @@ class ExpensasListado extends Component {
         //   user: auth().currentUser,
           meses: [],
           readError: null,
+          nombresMeses :["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                         "Julio", "Agosto", "Septiembre", "Octubre",
+                        "Noviembre", "Diciembre"]
         };
       }
     
@@ -30,13 +33,25 @@ class ExpensasListado extends Component {
           db.ref("expensas").on("value", snapshot => {
             let meses = [];
             snapshot.forEach((snap) => {
-                meses.push(snap.val());
+                let mapExpensa = snap.val();
+                mapExpensa.key = snap.key;
+                meses.push(mapExpensa);
             });
             this.setState({ meses });
             console.log(meses);
           });
         } catch (error) {
           this.setState({ readError: error.message });
+        }
+    }
+
+    deleteExpensa(key){
+        console.log(key);
+        try {
+            db.ref('expensas').child(key).remove();
+        } catch(error){
+            console.log("Error al eliminar");
+            console.log(error);
         }
     }
 
@@ -47,8 +62,11 @@ class ExpensasListado extends Component {
                 <List className="list-expensa">
                     {this.state.meses.map(mes => (
                         <ListItem className="list-expensa-item">
-                            {mes.timestamp}
+                            {this.state.nombresMeses[parseInt(mes.mes)]}
                             <ExpensasDescargar />
+                            <Button variantColor = "red" variant="solid" onClick={() => this.deleteExpensa(mes.key)}>
+                                <Icon name="delete" size="20px" color="white" />
+                            </Button>
                         </ListItem>
                     ))}
                 </List>

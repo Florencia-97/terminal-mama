@@ -1,70 +1,44 @@
-import React  from "react";
-import { useForm } from "react-hook-form";
-import { db } from "./services/firebase.js"
-import './App.css'
+import React, { Component }  from "react";
+import ExpensaForm from "./ExpensaForm";
+import { db } from "./services/firebase"
 
-import {
-  Button,
-  Box
-} from "@chakra-ui/core";
 
-import ExpensasRow from "./ExpensasRow";
+class ExpensaCrear extends Component{
 
-function ExpensaCrear() {
-
-  const { handleSubmit, errors, register, formState } = useForm();
-
-  async function submitExpensa(map) {
-    try {
-      await db.ref("expensas").push({
-        content: map,
-        timestamp: Date.now()
-      });
-    } catch (error) {
-      console.log("Falló");
+    constructor(props) {
+        super(props);
+        this.state = {
+        //   user: auth().currentUser,
+          info: [],
+          readError: null,
+          ultimoMes: [],
+          isLoaded: false
+        };
+      }
+    
+    async componentDidMount() {
+        this.setState({ readError: null });
+        try {
+          db.ref("expensas").orderByKey().limitToLast(1).on("value", snapshot => {
+            snapshot.forEach((snap) => {
+                let info = snap.val().info;
+                this.setState({info: info, isLoaded: true});
+            });
+          }
+          );
+        } catch (error) {
+          this.setState({ readError: error.message });
+        }
     }
-  }
 
-  function onSubmit(values) {
-    console.log(values);
-    submitExpensa(values);
-  }
+    render(){
+        const isLoaded = this.state.isLoaded;
+        return(
+          isLoaded ?
+            <ExpensaForm elems={this.state.info} /> : <h1>Loading</h1>
+        )
+    }
 
-  function returnForm(){
-
-    return (
-      <form onSubmit={handleSubmit(onSubmit)} className="form-data">
-        <Box p={8}>
-          <ExpensasRow errors={errors} register={register} i={0}
-                      name={"Municipal"} value={0} />
-          <ExpensasRow errors={errors} register={register} i={1}
-                      name={"Seguro inc. (c11)"} value={0} />
-          <ExpensasRow errors={errors} register={register} i={2}
-                      name={"Seguro resp civil. (c11)"} value={0} />
-          <ExpensasRow errors={errors} register={register} i={3}
-                      name={"Epen"} value={0} />
-          <ExpensasRow errors={errors} register={register} i={4}
-                      name={"Camuzzi"} value={0} />
-          <ExpensasRow errors={errors} register={register} i={5}
-                      name={"Jardinero"} value={0} />
-          <Button
-            mt={4}
-            variantColor="teal"
-            isLoading={formState.isSubmitting}
-            type="submit">
-            Crear
-          </Button>
-        </Box>
-      </form>
-    );
-  }
-
-  return (
-    <Box p={8}>
-      <h1 className="sub-title">Nuevo Mes</h1>
-      {returnForm()}
-    </Box>
-  );
 }
-  
-export default ExpensaCrear;
+
+export default ExpensaCrear
