@@ -35,6 +35,7 @@ class ExpensasListado extends Component {
             snapshot.forEach((snap) => {
                 let mapExpensa = snap.val();
                 mapExpensa.key = snap.key;
+                console.log(mapExpensa);
                 meses.push(mapExpensa);
             });
             this.setState({ meses });
@@ -63,7 +64,7 @@ class ExpensasListado extends Component {
                     {this.state.meses.map(mes => (
                         <ListItem className="list-expensa-item">
                             {this.state.nombresMeses[parseInt(mes.mes)]}
-                            <ExpensasDescargar />
+                            {mes.info ? <ExpensasDescargar data={mes}/> : "."}
                             <Button variantColor = "red" variant="solid" onClick={() => this.deleteExpensa(mes.key)}>
                                 <Icon name="delete" size="20px" color="white" />
                             </Button>
