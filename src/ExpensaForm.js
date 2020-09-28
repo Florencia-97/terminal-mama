@@ -22,12 +22,21 @@ function ExpensaForm(props) {
         date: today,
         mes: today.getMonth(),
         anio: today.getFullYear(),
+        total: getMontoTotal(map)
       });
       alert("Expensa creada correctamente!");
     } catch (error) {
       console.log(error);
       console.log("Falló");
     }
+  }
+
+  function getMontoTotal(info){
+    var total = 0;
+    for (const item in info) {
+      total += parseInt(info[item]["value"]);
+    }
+    return total;
   }
 
   function onSubmit(values) {

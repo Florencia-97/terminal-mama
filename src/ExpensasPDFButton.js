@@ -5,14 +5,14 @@ import './App.css'
 function ExpensasPDFButton(props) {
 
   let info = [];
-  console.log(props);
   if (props.data) {
     for (const property in props.data.info) {
       var newOb = {"title": props.data.info[property]["name"], "value": props.data.info[property]["value"]};
       info.push(newOb);
     }
   }
-  info.push({"title": "Total", "value": "1000"});
+  var porcentajeAPagar = parseInt(props.data.total) * parseInt(props.porcentaje) / 100;
+  info.push({"title": "Total", "value": porcentajeAPagar});
 
   return(
       <button onClick={() => {
