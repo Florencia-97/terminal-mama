@@ -2,6 +2,7 @@ import React, { Component }  from "react";
 import './App.css'
 import {Link} from 'react-router-dom';
 import { db } from "./services/firebase"
+import nombreMes from "./utils/mes"
 
 import {
     List,
@@ -21,9 +22,6 @@ class ExpensasListado extends Component {
         //   user: auth().currentUser,
           meses: [],
           readError: null,
-          nombresMeses :["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-                         "Julio", "Agosto", "Septiembre", "Octubre",
-                        "Noviembre", "Diciembre"]
         };
       }
     
@@ -63,7 +61,7 @@ class ExpensasListado extends Component {
                 <List className="list-expensa">
                     {this.state.meses.map(mes => (
                         <ListItem className="list-expensa-item">
-                            {this.state.nombresMeses[parseInt(mes.mes)]}
+                            {nombreMes(parseInt(mes.mes))}
                             {mes.info ? <ExpensasDescargar data={mes}/> : "."}
                             <Button variantColor = "red" variant="solid" onClick={() => this.deleteExpensa(mes.key)}>
                                 <Icon name="delete" size="20px" color="white" />

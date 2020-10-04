@@ -6,6 +6,8 @@ import { Box } from "@chakra-ui/core";
 
 function ExpensasDescargar(props){
 
+  console.log(props);
+
   return(
         <Box p={4} className="download-buttons">
             <ExpensasPDFButton porcentaje={20} data={props.data} />

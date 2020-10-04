@@ -1,5 +1,6 @@
 import React from 'react';
 import pdf from './utils/pdfExpensa'
+import nombreMes from "./utils/mes"
 import './App.css'
 
 function ExpensasPDFButton(props) {
@@ -12,10 +13,12 @@ function ExpensasPDFButton(props) {
     }
   }
   var porcentajeAPagar = parseInt(props.data.total) * parseInt(props.porcentaje) / 100;
-  info.push({"title": "Total", "value": porcentajeAPagar});
+  info.push({"title": "  " , "value": " "});
+  info.push({"title": "Total" , "value": props.data.total});
+  info.push({"title": "Porcentaje " + props.porcentaje + "%" , "value": porcentajeAPagar});
 
   return(
-      <button onClick={() => {
+      <button className="btn-pdf" onClick={() => {
         // Mind we are dynamically setting filename to be the
         // users movie input text, this can be anything you want.
         const filename = `expensa${16}.pdf`
@@ -24,17 +27,20 @@ function ExpensasPDFButton(props) {
         // This is important to the function we are building
         // because it sets the order in which we will display data
         const headers = [
-          {key: 'title', display: 'Title'},
-          {key: 'value', display: 'Valor'},
+          {key: 'title', label: ' ', xPos:200},
+          {key: 'value', label: ' ', xPos:500},
         ]
+
+        //En extraInfo puedo agregar datos extra
+        const extraInfo = {title: "Expensas mes " + nombreMes(parseInt(props.data.mes))}
 
         // Here's the call for our pdf function
         // Because of the placeholder code in our pdf.js file,
         // clicking on this should render a save dialog
         // and downloading should render an empty pdf
-        pdf({data: info, headers, filename})
+        pdf({data: info, headers, filename, extraInfo})
       }}>
-      {props.porcentaje}-
+      {props.porcentaje}
     </button>
     );
 

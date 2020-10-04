@@ -1,6 +1,6 @@
 import jsPDF from 'jspdf'
 
-export default function({data, headers, filename}) {
+export default function({data, headers, filename, extraInfo}) {
   
   const doc = new jsPDF({
     orientation: 'l',
@@ -30,18 +30,20 @@ export default function({data, headers, filename}) {
   }
 
   // Let's set up a standard padding that we can add to known coordinates
-  const padding = 15
-
-  doc.setFontSize(8)
-
+  const padding = 10
   const xPositions = []
+
+  doc.setFontSize(20)
+  doc.text(extraInfo.title, 300 , 50)
+  doc.setFontSize(15)
+  const headerYPos = pageMargin + 50
 
   headers.forEach((heading, index) => {
     // If we choose to, we can add a prop 'xPos' to the headers config in App.js
     // this will set the starting positions of the headers if we need to define column widths
     // I'm choosing to just space all columns evenly :)
     if (heading.hasOwnProperty('xPos')) {
-      doc.text(heading.label, heading.xPos, pageMargin)
+      doc.text(heading.label, heading.xPos, headerYPos)
       xPositions.push(heading.xPos)
     } else {
       // Here we are starting at pageMargin's xPosition plus whatever index we are on
@@ -51,8 +53,8 @@ export default function({data, headers, filename}) {
       // column 3 starts at: 50 + 2 * 197.75 =  445.5
       // column 4 starts at: 50 + 3 * 197.75 =  643.25
       const xPositionForCurrentHeader = pageMargin + index * (liveArea.width/(headers.length))
-      const yPositionForHeaders = pageMargin
-      // doc.text(heading.label, index === 0 ? xPositionForCurrentHeader:(xPositionForCurrentHeader + padding), yPositionForHeaders)
+      const yPositionForHeaders = headerYPos
+      doc.text(heading.label, index === 0 ? xPositionForCurrentHeader:(xPositionForCurrentHeader + padding), yPositionForHeaders)
 
       // We will also need some way to track these xPositions and the column width,
       // So let's push them to an array that will key off of their index
@@ -60,10 +62,10 @@ export default function({data, headers, filename}) {
     }
   })
 
-  doc.line(pageMargin, pageMargin + 3.5, liveArea.width , pageMargin + 3.5)
+  doc.line(pageMargin * 2, headerYPos + 5, liveArea.width - pageMargin, headerYPos + 5)
 
-  const baseYPosForRows = pageMargin + padding
-  let nextYPos = baseYPosForRows
+  const baseYPosForRows = headerYPos + padding
+  let nextYPos = baseYPosForRows + padding + 10
 
   // ROWS
   data.forEach((row, rIndex) => {
@@ -81,7 +83,6 @@ export default function({data, headers, filename}) {
     // COLUMNS
     headers.forEach((column, cIndex) => {
       const longText = doc.splitTextToSize(String(row[column.key]), xPositions[cIndex] - xPositions[cIndex !== 0 && cIndex - 1] )
-      console.log(longText)
       const rowHeight = longText.length * doc.getLineHeight()
       rowHeights.push(rowHeight)
 
@@ -111,6 +112,8 @@ export default function({data, headers, filename}) {
       nextYPos = baseYPosForRows
     }
   })
+
+  doc.line(pageMargin * 2, nextYPos - 15 , liveArea.width - pageMargin, nextYPos - 15)
 
   doc.save(filename)
 }
