@@ -1,6 +1,6 @@
 import React, { Component }  from "react";
 import ExpensaForm from "./ExpensaForm";
-import { db } from "./services/firebase"
+import { db, auth } from "./services/firebase"
 
 
 class ExpensaCrear extends Component{
@@ -8,7 +8,7 @@ class ExpensaCrear extends Component{
     constructor(props) {
         super(props);
         this.state = {
-        //   user: auth().currentUser,
+          user: auth().currentUser,
           info: [],
           readError: null,
           ultimoMes: [],
@@ -35,7 +35,7 @@ class ExpensaCrear extends Component{
         const isLoaded = this.state.isLoaded;
         return(
           isLoaded ?
-            <ExpensaForm elems={this.state.info} /> : <h1>Loading</h1>
+            <ExpensaForm elems={this.state.info} user={this.state.user} /> : <h1>Loading</h1>
         )
     }
 

@@ -1,7 +1,7 @@
 import React, { Component }  from "react";
 import './App.css'
 import {Link} from 'react-router-dom';
-import { db } from "./services/firebase"
+import { db, auth } from "./services/firebase"
 import nombreMes from "./utils/mes"
 
 import {
@@ -19,7 +19,7 @@ class ExpensasListado extends Component {
     constructor(props) {
         super(props);
         this.state = {
-        //   user: auth().currentUser,
+          user: auth().currentUser,
           meses: [],
           readError: null,
         };

@@ -22,7 +22,8 @@ function ExpensaForm(props) {
         date: today,
         mes: today.getMonth(),
         anio: today.getFullYear(),
-        total: getMontoTotal(map)
+        total: getMontoTotal(map),
+        uid: props.user.uid
       });
       alert("Expensa creada correctamente!");
     } catch (error) {
