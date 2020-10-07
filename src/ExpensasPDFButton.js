@@ -3,6 +3,11 @@ import pdf from './utils/pdfExpensa'
 import nombreMes from "./utils/mes"
 import './App.css'
 
+
+import {
+  Button
+} from "@chakra-ui/core";
+
 function ExpensasPDFButton(props) {
 
   let info = [];
@@ -18,10 +23,10 @@ function ExpensasPDFButton(props) {
   info.push({"title": "Porcentaje " + props.porcentaje + "%" , "value": porcentajeAPagar});
 
   return(
-      <button className="btn-pdf" onClick={() => {
+      <Button backgroundColor="#407088" color="white" className="btn-pdf" onClick={() => {
         // Mind we are dynamically setting filename to be the
         // users movie input text, this can be anything you want.
-        const filename = `expensa${16}.pdf`
+        const filename = `expensa${props.porcentaje}.pdf`
         // All we want for this example are:
         // Title, Release Date, Description, Vote Average
         // This is important to the function we are building
@@ -40,8 +45,8 @@ function ExpensasPDFButton(props) {
         // and downloading should render an empty pdf
         pdf({data: info, headers, filename, extraInfo})
       }}>
-      {props.porcentaje}
-    </button>
+      {props.btnName ? props.btnName : props.porcentaje}
+    </Button>
     );
 
 }

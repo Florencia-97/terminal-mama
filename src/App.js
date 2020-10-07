@@ -12,6 +12,7 @@ import ExpensasCrear from './ExpensaCrear';
 import ReportesListado from './ReportesListado';
 import ReporteCrear from './ReporteCrear';
 import Login from './Login';
+import Local from './Local';
 import { auth } from "./services/firebase";
 import { ThemeProvider, CSSReset, Box } from "@chakra-ui/core";
 
@@ -49,6 +50,10 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
   );
 }
 
+function Locales({ match }) {
+  console.log(match.params);
+  return <Local porcentaje={match.params.id}/>;
+}
 
 class App extends Component {
 
@@ -106,6 +111,9 @@ class App extends Component {
                   <PrivateRoute path="/reportes" exact component={ReportesListado} authenticated={this.state.authenticated}/>
                   <PrivateRoute path="/reportes/crear" component={ReporteCrear} authenticated={this.state.authenticated}/>
                   <PrivateRoute path="/reportes/listado" component={ReportesListado} authenticated={this.state.authenticated}/>
+
+                  {/* Locales */}
+                  <PrivateRoute path="/local/:id" exact component={Locales} authenticated={this.state.authenticated} />
   
                 </Switch>
               </Box>

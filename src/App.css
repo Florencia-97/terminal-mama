@@ -43,16 +43,6 @@
   align-items: center;
 }
 
-.btn-pdf{
-  background: #407088;
-  border-radius: 10%;
-  color: white;
-  font-weight: 600;
-  padding: 5px;
-  margin: 8px;
-  width: 30px;
-}
-
 .list-expensa-item {
   align-items: center;
   background: #ffe2e2;
