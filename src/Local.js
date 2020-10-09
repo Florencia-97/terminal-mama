@@ -43,13 +43,20 @@ class Local extends Component{
     render(){
         return (
             <Box p={4}>
-                <h1 className="sub-title">Expensas</h1>
+                <h1 className="sub-title">Local {this.props.local}</h1>
                 <List className="list-expensa">
                     {this.state.meses.map(mes => (
-                        <ListItem className="list-expensa-item">
-                            {nombreMes(parseInt(mes.mes))}
-                            {mes.info ? <ExpensasPDFButton porcentaje={this.props.porcentaje} 
-                                    data={mes} btnName={"Descargar"} /> : "."}
+                        <ListItem className="list-expensa-row">
+                            <div className="list-expensa-row-elem">
+                                <h3>
+                                    {nombreMes(parseInt(mes.mes))}
+                                </h3>
+                            </div>
+
+                            <div className="list-expensa-row-elem list-expensa-btns">
+                              {mes.info ? <ExpensasPDFButton porcentaje={this.props.porcentaje} 
+                                      data={mes} btnName={"Descargar"} /> : "."}
+                            </div>
                         </ListItem>
                     ))}
                 </List>

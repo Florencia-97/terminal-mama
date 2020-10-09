@@ -60,12 +60,18 @@ class ExpensasListado extends Component {
                 <h1 className="sub-title">Expensas</h1>
                 <List className="list-expensa">
                     {this.state.meses.map(mes => (
-                        <ListItem className="list-expensa-item">
-                            {nombreMes(parseInt(mes.mes))}
-                            {mes.info ? <ExpensasDescargar data={mes}/> : "."}
-                            <Button variantColor = "red" variant="solid" onClick={() => this.deleteExpensa(mes.key)}>
-                                <Icon name="delete" size="20px" color="white" />
-                            </Button>
+                        <ListItem className="list-expensa-row">
+                            <div className="list-expensa-row-elem">
+                                <h3>
+                                    {nombreMes(parseInt(mes.mes))}
+                                </h3>
+                            </div>
+                            <div className="list-expensa-row-elem list-expensa-btns">
+                                {mes.info ? <ExpensasDescargar data={mes}/> : "."}
+                                <Button variantColor = "red" variant="solid" onClick={() => this.deleteExpensa(mes.key)}>
+                                    <Icon name="delete" size="20px" color="white" />
+                                </Button>
+                            </div>
                         </ListItem>
                     ))}
                 </List>

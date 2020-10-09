@@ -13,6 +13,7 @@ import ReportesListado from './ReportesListado';
 import ReporteCrear from './ReporteCrear';
 import Login from './Login';
 import Local from './Local';
+import WrongPage from './WrongPage'
 import { auth } from "./services/firebase";
 import { ThemeProvider, CSSReset, Box } from "@chakra-ui/core";
 
@@ -51,8 +52,14 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
 }
 
 function Locales({ match }) {
-  console.log(match.params);
-  return <Local porcentaje={match.params.id}/>;
+  var porcentaje = "";
+  var local_numero = match.params.id;
+  if (local_numero === "1") porcentaje = "20";
+  if (local_numero === "2") porcentaje = "30";
+  if (local_numero === "3" || local_numero === "5") porcentaje = "17";
+  if (local_numero === "4") porcentaje = "16";
+  if (porcentaje === "") return <WrongPage/>
+  return <Local porcentaje={porcentaje} local={local_numero}/>;
 }
 
 class App extends Component {
@@ -91,7 +98,7 @@ class App extends Component {
         <ThemeProvider>
           <CSSReset />
             <div className="web-body">
-              <Nav />
+              <Nav authenticated={this.state.authenticated}  />
               <Box p={4}>
                 <Switch>
                   <Route path="/" exact component={Home} />
