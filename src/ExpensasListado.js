@@ -7,7 +7,6 @@ import nombreMes from "./utils/mes"
 import {
     List,
     ListItem,
-    Box,
     Icon,
     Button
 } from "@chakra-ui/core";
@@ -37,7 +36,6 @@ class ExpensasListado extends Component {
                 meses.push(mapExpensa);
             });
             this.setState({ meses });
-            console.log(meses);
           });
         } catch (error) {
           this.setState({ readError: error.message });
@@ -45,7 +43,6 @@ class ExpensasListado extends Component {
     }
 
     deleteExpensa(key){
-        console.log(key);
         try {
             db.ref('expensas').child(key).remove();
         } catch(error){
@@ -55,8 +52,15 @@ class ExpensasListado extends Component {
     }
 
     render(){
+        if (this.state.meses.length === 0) {
+            return (
+                <section className="seccion-expensas-creadas">
+                    Loading
+                </section>
+            )
+        }
         return (
-            <Box p={4}>
+            <section className="seccion-expensas-creadas">
                 <h1 className="sub-title">Expensas</h1>
                 <List className="list-expensa">
                     {this.state.meses.map(mes => (
@@ -79,7 +83,7 @@ class ExpensasListado extends Component {
                     <Icon name="add" size="20px" color="red.500" />
                     Crear nuevo mes
                 </Link>
-            </Box>
+            </section>
         );
     }
 }

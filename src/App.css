@@ -1,6 +1,6 @@
 .web-body{
   background: #132743;
-  height: 100vh;
+  min-height: 120vh;
 }
 
 .nav-per{
@@ -45,6 +45,22 @@
   align-items: center;
 }
 
+/* Listado de expensas */
+
+.seccion-expensas-creadas {
+  background-color: #132743;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.list-expensa {
+  width: 80%;
+}
+
 .list-expensa-row {
   align-items: center;
   background: #ffe2e2;
@@ -76,6 +92,8 @@
   display: flex;
   padding: 10px;
   justify-content: space-around;
+  align-self: flex-end;
+  margin-right: 10%;
   width: 20%;
 }
 
@@ -87,7 +105,7 @@
 }
 
 .container-form{
-  height: 80vh;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;

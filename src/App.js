@@ -15,7 +15,7 @@ import Login from './Login';
 import Local from './Local';
 import WrongPage from './WrongPage'
 import { auth } from "./services/firebase";
-import { ThemeProvider, CSSReset, Box } from "@chakra-ui/core";
+import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 
 require('dotenv').config()
 
@@ -99,7 +99,6 @@ class App extends Component {
           <CSSReset />
             <div className="web-body">
               <Nav authenticated={this.state.authenticated}  />
-              <Box p={4}>
                 <Switch>
                   <Route path="/" exact component={Home} />
 
@@ -123,7 +122,6 @@ class App extends Component {
                   <PrivateRoute path="/local/:id" exact component={Locales} authenticated={this.state.authenticated} />
   
                 </Switch>
-              </Box>
             </div>
         </ThemeProvider>
       </Router>
