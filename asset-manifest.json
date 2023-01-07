@@ -1,30 +1,30 @@
 {
   "files": {
-    "main.css": "/static/css/main.af6a977f.chunk.css",
-    "main.js": "/static/js/main.3822af47.chunk.js",
-    "main.js.map": "/static/js/main.3822af47.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.57af0130.js",
-    "runtime-main.js.map": "/static/js/runtime-main.57af0130.js.map",
-    "static/js/2.1d29b1e1.chunk.js": "/static/js/2.1d29b1e1.chunk.js",
-    "static/js/2.1d29b1e1.chunk.js.map": "/static/js/2.1d29b1e1.chunk.js.map",
-    "static/js/3.5cc91c90.chunk.js": "/static/js/3.5cc91c90.chunk.js",
-    "static/js/3.5cc91c90.chunk.js.map": "/static/js/3.5cc91c90.chunk.js.map",
-    "static/js/4.db4e77a5.chunk.js": "/static/js/4.db4e77a5.chunk.js",
-    "static/js/4.db4e77a5.chunk.js.map": "/static/js/4.db4e77a5.chunk.js.map",
-    "static/js/5.54b6d574.chunk.js": "/static/js/5.54b6d574.chunk.js",
-    "static/js/5.54b6d574.chunk.js.map": "/static/js/5.54b6d574.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.68fab17c4b2896fdf142d4ed43181501.js": "/precache-manifest.68fab17c4b2896fdf142d4ed43181501.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.af6a977f.chunk.css.map": "/static/css/main.af6a977f.chunk.css.map",
-    "static/js/3.5cc91c90.chunk.js.LICENSE.txt": "/static/js/3.5cc91c90.chunk.js.LICENSE.txt",
-    "static/js/4.db4e77a5.chunk.js.LICENSE.txt": "/static/js/4.db4e77a5.chunk.js.LICENSE.txt",
-    "static/js/5.54b6d574.chunk.js.LICENSE.txt": "/static/js/5.54b6d574.chunk.js.LICENSE.txt"
+    "main.css": "/terminal-mama/static/css/main.af6a977f.chunk.css",
+    "main.js": "/terminal-mama/static/js/main.a49425a2.chunk.js",
+    "main.js.map": "/terminal-mama/static/js/main.a49425a2.chunk.js.map",
+    "runtime-main.js": "/terminal-mama/static/js/runtime-main.69ed81e8.js",
+    "runtime-main.js.map": "/terminal-mama/static/js/runtime-main.69ed81e8.js.map",
+    "static/js/2.6a4ad9c8.chunk.js": "/terminal-mama/static/js/2.6a4ad9c8.chunk.js",
+    "static/js/2.6a4ad9c8.chunk.js.map": "/terminal-mama/static/js/2.6a4ad9c8.chunk.js.map",
+    "static/js/3.739185ef.chunk.js": "/terminal-mama/static/js/3.739185ef.chunk.js",
+    "static/js/3.739185ef.chunk.js.map": "/terminal-mama/static/js/3.739185ef.chunk.js.map",
+    "static/js/4.69f076e8.chunk.js": "/terminal-mama/static/js/4.69f076e8.chunk.js",
+    "static/js/4.69f076e8.chunk.js.map": "/terminal-mama/static/js/4.69f076e8.chunk.js.map",
+    "static/js/5.127514f4.chunk.js": "/terminal-mama/static/js/5.127514f4.chunk.js",
+    "static/js/5.127514f4.chunk.js.map": "/terminal-mama/static/js/5.127514f4.chunk.js.map",
+    "index.html": "/terminal-mama/index.html",
+    "precache-manifest.7d319ca4795a3cf6193d415185f68f61.js": "/terminal-mama/precache-manifest.7d319ca4795a3cf6193d415185f68f61.js",
+    "service-worker.js": "/terminal-mama/service-worker.js",
+    "static/css/main.af6a977f.chunk.css.map": "/terminal-mama/static/css/main.af6a977f.chunk.css.map",
+    "static/js/3.739185ef.chunk.js.LICENSE.txt": "/terminal-mama/static/js/3.739185ef.chunk.js.LICENSE.txt",
+    "static/js/4.69f076e8.chunk.js.LICENSE.txt": "/terminal-mama/static/js/4.69f076e8.chunk.js.LICENSE.txt",
+    "static/js/5.127514f4.chunk.js.LICENSE.txt": "/terminal-mama/static/js/5.127514f4.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.57af0130.js",
-    "static/js/3.5cc91c90.chunk.js",
+    "static/js/runtime-main.69ed81e8.js",
+    "static/js/3.739185ef.chunk.js",
     "static/css/main.af6a977f.chunk.css",
-    "static/js/main.3822af47.chunk.js"
+    "static/js/main.a49425a2.chunk.js"
   ]
 }
